@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blood Donation Form</title>
+    <style>
+        body{
+            font-family:Arial,Helvetica,sans-serif;
+            margin:0;
+            background:#f9f9f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            background-image: url("blood.png");
+             background-size:cover;
+        }
+        form{
+            width:400px; 
+            background:aqua; 
+            padding:20px; 
+            border-radius:8px; 
+            box-shadow:0 2px 6px #0002;
+            
+        }
+        label{
+            display:block; 
+            margin-top:12px; 
+            font-weight:bold;
+            align-items: center;
+        }
+        input, select{
+            width:100%; 
+            padding:6px; 
+            margin-top:4px; 
+            border:1px solid #ccc; 
+            border-radius:4px;
+        }
+        button{
+            margin-top:20px; 
+            padding:10px; 
+            width:100%; 
+            background:#c00; 
+            color:#fff; 
+            border:none; 
+            border-radius:4px; 
+            cursor:pointer
+        }
+        button:hover{
+            background:#900
+        }
+            
+        .error{
+            color:red; 
+            font-size:0.9em; 
+            margin-top:4px
+        }
+    </style>
+</head>
+<body>
+<form id="donorForm">
+    <h2>Blood Donation Registration</h2>
+
+    <label>Name</label>
+    <input type="text" id="name" placeholder="Full name">
+    <div class="error" id="nameErr"></div>
+
+    <label>Blood Group</label>
+    <select id="group">
+        <option value="">Select</option>
+        <option>O+</option>
+        <option>O-</option>
+        <option>A+</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B-</option>
+        <option>AB+</option>
+        <option>AB-</option>
+    </select>
+    <div class="error" id="groupErr"></div>
+
+    <label>Date of Birth</label>
+    <input type="date" id="dob">
+    <div class="error" id="dobErr"></div>
+
+    <label>Phone (mobile)</label>
+    <input type="tel" id="phone" placeholder="Phone number">
+    <div class="error" id="phoneErr"></div>
+
+    <label>E-mail</label>
+    <input type="name" id="">
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    document.getElementById('donorForm').addEventListener('submit', function(e){
+        e.preventDefault(); 
+
+        let valid = true;
+        const err = (id, msg) => {
+            document.getElementById(id).textContent = msg;
+            if (msg) valid = false;
+        };
+
+        const name = document.getElementById('name').value.trim();
+        err('nameErr', name ? '' : 'Name required');
+
+        const group = document.getElementById('group').value;
+        err('groupErr', group ? '' : 'Select a blood group');
+
+        const dob = document.getElementById('dob').value;
+        err('dobErr', dob ? '' : 'Date of birth required');
+
+        const phone = document.getElementById('phone').value.trim();
+        err('phoneErr', phone ? '' : 'Phone number required');
+
+        if (valid) {
+            alert('Form submitted successfully!');
+            this.reset();
+        }
+    });
+</script>
+</body>
+</html>
